@@ -1,5 +1,6 @@
 from pathlib import Path
 import json
+import sys
 
 sizes = {}
 
@@ -75,5 +76,9 @@ def ConvertSize(size):
 		return str(round(size/pow(1024,6),1)) + 'EB'
 
 if __name__ == '__main__':
-	paths = BFS(Path('C:\\Users\\Administrator'))[0]
+	if len(sys.argv) != 2:
+		path = input('Please enter a path:').replace('/','//')
+	else:
+		path = sys.argv[1]
+	paths = BFS(Path(path))[0]
 	PrintSortedSize(paths)
